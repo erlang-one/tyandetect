@@ -115,9 +115,6 @@ section.question label, .control-fin {
     cursor: pointer;
     display: inline-block;
 }
-section.question label:hover {
-    background-color: #9cffe1;
-}
 #controls {
     margin: 1rem;
     position: relative;
@@ -129,8 +126,8 @@ section.question label:hover {
     margin: 2rem;
     background-color: #ff866b;
 }
-.control-fin:hover {
-    background-color: #ffb68b;
+section.question label:hover, .control-fin:hover {
+    background-color: #d6f9c1;
 }
 section.question input:checked + label { background-color: #bff1a1; }
 
@@ -144,6 +141,11 @@ section.question input:checked + label { background-color: #bff1a1; }
     position: absolute;
     height: 5rem;
     width: 4rem;
+    line-height: 0px;
+}
+.control-next:hover:before, .control-next:hover:after, .control-prev:hover:before, .control-prev:hover:after {
+    background-color: #d6f9c1;
+    width: 3.4rem;
 }
 .control-next:before, .control-next:after, .control-prev:before, .control-prev:after {
     content: '';
@@ -156,10 +158,10 @@ section.question input:checked + label { background-color: #bff1a1; }
 .control-prev:before, .control-prev:after { background-color: #84d1cd; }
 .control-next, .control-next:before, .control-next:after { right: 0rem; }
 .control-prev, .control-prev:before, .control-prev:after { left: 0rem; }
-.control-next:before { transform: translateY(1.4rem) rotate(-45deg); }
-.control-next:after { transform: translateY(-1.4rem) rotate(45deg); }
-.control-prev:before { transform: translateY(1.4rem) rotate(45deg); }
-.control-prev:after { transform: translateY(-1.4rem) rotate(-45deg); }
+.control-next:before { transform: rotate(45deg);  transform-origin: bottom right; }
+.control-next:after  { transform: rotate(-45deg); transform-origin: top right;    }
+.control-prev:before { transform: rotate(-45deg); transform-origin: bottom left;  }
+.control-prev:after  { transform: rotate(45deg);  transform-origin: top left; }
 
 .progress {
     visibility: hidden;
@@ -199,13 +201,7 @@ section.question input:checked + label { background-color: #bff1a1; }
     html {
         font-size: 8px;
     }
-    .control-next:before { transform: translateY(1.8rem) rotate(-45deg); }
-    .control-next:after { transform: translateY(-1.8rem) rotate(45deg); }
-    .control-prev:before { transform: translateY(1.8rem) rotate(45deg); }
-    .control-prev:after { transform: translateY(-1.8rem) rotate(-45deg); }
-    
     section.question label, .control-fin { font-size: 2.6rem; padding: 0.5rem 1.4rem; }
-    
     #result {
         padding: 2rem;
         font-size: 2rem;
