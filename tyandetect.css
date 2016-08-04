@@ -19,6 +19,12 @@ a#title {
     text-decoration: none;
     color: #777;
 }
+.sub-title {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 1.4rem;
+    color: #bbb;
+}
 
 #result {
     margin: 0.6rem auto;
@@ -38,15 +44,20 @@ a#title {
 }
 
 #footer {
+    margin-top: 4rem;
     padding: 2rem;
     font-size: 0.4rem;
+}
+
+.ya-share2 {
+    margin: 1rem;
 }
 
 
 section.question:not(.active) {
     display: none;
 }
-section.question, #title, #controls, #controls-2, #footer {
+section.question, h1, #controls, #controls-2, #footer {
     text-align: center;
 }
 section.question > div {
@@ -141,7 +152,6 @@ progress:after {
     width: 3rem;
     height: 3rem;
     right: 0px;
-    /* height - 1/2 line height - border size */
     top: calc( 50% - 1.5rem - 0px );
     border: 0px solid #777;
     border-radius: 10rem;
