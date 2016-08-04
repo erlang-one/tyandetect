@@ -133,6 +133,7 @@ function renderControls(sec) {
         qr(qs('.progress'));
         renderControls(undefined);
         var result = summary();
+        ga && ga('send', { hitType: 'event', eventCategory: 'detect', eventAction: result.toString() });
         var xhr = new XMLHttpRequest();
         xhr.open('GET', al[result], false);
         xhr.send();
