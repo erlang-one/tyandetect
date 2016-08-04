@@ -1,12 +1,21 @@
-
+body {
+    margin: 0px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga", "kern";
+}
 #container {
     margin: 5rem auto;
-    font-family: "-apple-system" Helvetica;
+    font-family: "-apple-system", Helvetica Arial, sans-serif;
     font-size: 1.8rem;
     font-weight: 100;
     max-width: 1080px;
     min-width: 20rem;
 }
+/** {
+    transition: all 0.4s ease-out;
+}*/
 h1 {
     margin-bottom: 8rem;
     font-size: 4rem;
@@ -45,6 +54,13 @@ a#title {
     padding: 2rem;
     font-size: 1.4rem;
 }
+#footer > div {
+    margin: 1rem;
+}
+#footer a {
+    color: #888;
+    text-decoration: none;
+}
 
 .ya-share2 {
     margin: 1rem;
@@ -69,7 +85,7 @@ section.question input {
 }
 section.question label, .control-fin {
     color: #fff;
-    background-color: rgba(139, 244, 242, 0.71);
+    background-color: rgba(255, 169, 220, 0.71);
     padding: 0.2rem 1rem;
     margin: 0.3rem 0.2rem;
     border-radius: 0.2rem;
@@ -93,7 +109,7 @@ section.question label:hover {
 .control-fin:hover {
     background-color: #ffb68b;
 }
-section.question input:checked + label { background-color: #acffa5; }
+section.question input:checked + label { background-color: #bff1a1; }
 
 .control-next, .control-prev {
     text-decoration: none;
@@ -137,7 +153,7 @@ progress:after {
     width: calc(100% - 10rem);
     height: 4px;
     margin: 5rem;
-    background-image: -webkit-linear-gradient(left, #84d1cd, #ff866b);
+    background-image: -webkit-linear-gradient(left, #69cac6, #ff4016);
     border-radius: 10px;
     position: relative;
 }
@@ -152,6 +168,7 @@ progress:after {
     width: 3rem;
     height: 3rem;
     right: 0px;
+    /* height - 1/2 line height - border size */
     top: calc( 50% - 1.5rem - 0px );
     border: 0px solid #777;
     border-radius: 10rem;
@@ -174,4 +191,6 @@ progress:after {
     .control-next:after { transform: translateY(-1.9rem) rotate(45deg); }
     .control-prev:before { transform: translateY(1.9rem) rotate(45deg); }
     .control-prev:after { transform: translateY(-1.9rem) rotate(-45deg); }
+    
+    section.question label, .control-fin { font-size: 2.6rem; }
 }
