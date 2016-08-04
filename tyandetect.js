@@ -174,7 +174,7 @@ function summary()
 
 function progress(percent,text) {
     var dec = (100.0-percent) + '%';
-    document.styleSheets[0].addRule('.progress:after','margin-right: calc( ' + dec + ' - 1.5rem )');
+    document.styleSheets[0].addRule('.progress:after','margin-right: calc( ' + dec + ' - 0.8em )');
     document.styleSheets[0].addRule('.progress:after','content: "' + text + '"');
     document.styleSheets[0].addRule('.progress:before','width: ' + dec);
 };

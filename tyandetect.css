@@ -154,9 +154,10 @@ section.question input:checked + label { background-color: #bff1a1; }
 .control-prev:after { transform: translateY(-1.4rem) rotate(-45deg); }
 
 .progress {
-    width: calc(100% - 10rem);
+/*    font-size: 12px;*/
+    width: calc(100% - 10em);
     height: 4px;
-    margin: 5rem;
+    margin: 5em;
     background-image: -webkit-linear-gradient(left, #69cac6, #ff4016);
     border-radius: 10px;
     position: relative;
@@ -166,16 +167,16 @@ section.question input:checked + label { background-color: #bff1a1; }
     position: absolute;
     color: #fff;
     background-color: rgba(139, 244, 242, 0.71);
-    margin-right: calc( 100% - 1.5rem );
+    margin-right: calc( 100% - 0.8em );
     text-align: center;
-    line-height: 3rem;
-    width: 3rem;
-    height: 3rem;
+    width: 1.6em;
+    height: 1.6em;
     right: 0px;
-    top: calc( 50% - 1.5rem - 0px );
+    top: calc( 50% - 0.8em - 0px );
     border: 0px solid #777;
-    border-radius: 10rem;
-    font-size: 2rem;
+    border-radius: 10em;
+    font-size: 2em;
+    line-height: 1.6em;
 }
 .progress:before {
     content: '';
@@ -190,6 +191,12 @@ section.question input:checked + label { background-color: #bff1a1; }
     html {
         font-size: 8px;
     }
+    body {
+        padding: 0px;
+        margin: 0px;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
     .control-next:before { transform: translateY(1.8rem) rotate(-45deg); }
     .control-next:after { transform: translateY(-1.8rem) rotate(45deg); }
     .control-prev:before { transform: translateY(1.8rem) rotate(45deg); }
@@ -201,14 +208,5 @@ section.question input:checked + label { background-color: #bff1a1; }
         padding: 2rem;
         font-size: 2rem;
         line-height: 3.2rem;
-    }
-    
-    .progress:after {
-        margin-right: calc( 100% - 3rem );
-        line-height: 6rem;
-        width: 6rem;
-        height: 6rem;
-        top: calc( 50% - 3rem - 0px );
-        font-size: 3rem;
     }
 }
