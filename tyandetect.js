@@ -132,14 +132,16 @@ function renderControls(sec) {
         current.classList.remove('active');
         qr(qs('.progress'));
         renderControls(undefined);
+        qi('result').innerHTML = '<h2>Жди</h2>';
         var result = summary();
         ga && ga('send', { hitType: 'event', eventCategory: 'detect', eventAction: result.toString() });
         var xhr = new XMLHttpRequest();
         xhr.open('GET', al[result], false);
-        xhr.send();
-        if (xhr.status != 200) { console.log('error loading resource ' + xhr.status + ': ' + xhr.statusText ); }
-        else { md(qi('result'), xhr.responseText); }
-        
+        setTimeout(function() {
+            xhr.send();
+            if (xhr.status != 200) { console.log('error loading resource ' + xhr.status + ': ' + xhr.statusText ); }
+            else { md(qi('result'), xhr.responseText); }
+        }, 10);
     }, false);
     
     if(qs('section.question') !== sec) { controls.appendChild(prev); };
@@ -182,6 +184,7 @@ function progress(percent,text) {
 (function init() {
     var start = render().childNodes[0];
     start.classList.add('active');
+    qs('.progress').style.visibility = 'visible';
     renderControls(start);
     progress(10,1);
 })();

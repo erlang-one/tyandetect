@@ -162,6 +162,7 @@ section.question input:checked + label { background-color: #bff1a1; }
 .control-prev:after { transform: translateY(-1.4rem) rotate(-45deg); }
 
 .progress {
+    visibility: hidden;
     width: calc(100% - 10em);
     height: 4px;
     margin: 5em;
