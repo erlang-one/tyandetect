@@ -13,9 +13,6 @@ body {
     max-width: 1080px;
     min-width: 20rem;
 }
-/** {
-    transition: all 0.4s ease-out;
-}*/
 h1 {
     margin-bottom: 8rem;
     font-size: 4rem;
@@ -44,6 +41,24 @@ a#title {
 }
 #result h2, #result h2 { font-size: 3.4rem; }
 #result h2, #result h3 { font-size: 3.0rem; }
+
+#result h2 {
+    text-align: center;
+    font-size: 4rem;
+    position: relative;
+    margin-bottom: 6rem;
+}
+#result h2:after {
+    content: '';
+    position: absolute;
+    background-color: rgba(139, 244, 242, 0.71);
+    width: 8rem;
+    height: 8rem;
+    right: calc( 50% - 4rem );
+    top: calc( 50% - 4rem );
+    border-radius: 10rem;
+    z-index: -1;
+}
 
 #page {
     margin: 0rem 5rem;
@@ -121,7 +136,6 @@ section.question input:checked + label { background-color: #bff1a1; }
     position: absolute;
     height: 5rem;
     width: 4rem;
-/*    top: 20rem;*/
 }
 .control-next:before, .control-next:after, .control-prev:before, .control-prev:after {
     content: '';
@@ -138,16 +152,6 @@ section.question input:checked + label { background-color: #bff1a1; }
 .control-next:after { transform: translateY(-1.4rem) rotate(45deg); }
 .control-prev:before { transform: translateY(1.4rem) rotate(45deg); }
 .control-prev:after { transform: translateY(-1.4rem) rotate(-45deg); }
-
-
-progress:after {
-  content: '';
-  width: 6px;
-  height: 6px;
-  position: absolute;
-  display: inline-block;
-  background-color: green;
-}
 
 .progress {
     width: calc(100% - 10rem);
@@ -168,7 +172,6 @@ progress:after {
     width: 3rem;
     height: 3rem;
     right: 0px;
-    /* height - 1/2 line height - border size */
     top: calc( 50% - 1.5rem - 0px );
     border: 0px solid #777;
     border-radius: 10rem;
@@ -187,15 +190,25 @@ progress:after {
     html {
         font-size: 8px;
     }
-    .control-next:before { transform: translateY(1.7rem) rotate(-45deg); }
-    .control-next:after { transform: translateY(-1.7rem) rotate(45deg); }
-    .control-prev:before { transform: translateY(1.7rem) rotate(45deg); }
-    .control-prev:after { transform: translateY(-1.7rem) rotate(-45deg); }
+    .control-next:before { transform: translateY(1.8rem) rotate(-45deg); }
+    .control-next:after { transform: translateY(-1.8rem) rotate(45deg); }
+    .control-prev:before { transform: translateY(1.8rem) rotate(45deg); }
+    .control-prev:after { transform: translateY(-1.8rem) rotate(-45deg); }
     
     section.question label, .control-fin { font-size: 2.6rem; padding: 0.5rem 1.4rem; }
     
     #result {
+        padding: 2rem;
         font-size: 2rem;
         line-height: 3.2rem;
+    }
+    
+    .progress:after {
+        margin-right: calc( 100% - 3rem );
+        line-height: 6rem;
+        width: 6rem;
+        height: 6rem;
+        top: calc( 50% - 3rem - 0px );
+        font-size: 3rem;
     }
 }
