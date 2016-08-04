@@ -185,12 +185,17 @@ progress:after {
 
 @media only screen and (min-device-width : 300px) and (max-device-width : 700px) {
     html {
-        font-size: 6px;
+        font-size: 8px;
     }
-    .control-next:before { transform: translateY(1.9rem) rotate(-45deg); }
-    .control-next:after { transform: translateY(-1.9rem) rotate(45deg); }
-    .control-prev:before { transform: translateY(1.9rem) rotate(45deg); }
-    .control-prev:after { transform: translateY(-1.9rem) rotate(-45deg); }
+    .control-next:before { transform: translateY(1.7rem) rotate(-45deg); }
+    .control-next:after { transform: translateY(-1.7rem) rotate(45deg); }
+    .control-prev:before { transform: translateY(1.7rem) rotate(45deg); }
+    .control-prev:after { transform: translateY(-1.7rem) rotate(-45deg); }
     
-    section.question label, .control-fin { font-size: 2.6rem; }
+    section.question label, .control-fin { font-size: 2.6rem; padding: 0.5rem 1.4rem; }
+    
+    #result {
+        font-size: 2rem;
+        line-height: 3.2rem;
+    }
 }
