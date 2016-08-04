@@ -5,6 +5,7 @@ function qn(name) { return document.createElement(name); };
 function attr(node,a,v) { return node.setAttribute(a,v); };
 function qr(node) { node.parentNode.removeChild(node); };
 function qrc(node) { while (node.firstChild) { node.removeChild(node.firstChild); }};
+function qit(node,where,who) { node.insertAdjacentHTML(where,who); }
 
 var q = [
     [2,'У нее есть тату или пирсинг?',[['Да',-0.2],['Нет',0.1]]],
@@ -63,7 +64,7 @@ function render() {
         sec.dataset.name = i + 1;
         sec.classList.add('question');
         var t = qn('div');
-        t.insertAdjacentText('beforeEnd', q[i][1]);
+        qit(t, 'beforeEnd', q[i][1]);
         sec.appendChild(t);
         
         if(i + 1 === q.length) sec.dataset.finish = true;
@@ -85,7 +86,7 @@ function render() {
             // });
             
             attr(l, 'for', id);
-            l.insertAdjacentText('beforeEnd', v[0]);
+            qit(l, 'beforeEnd', v[0]);
             
             sec.appendChild(r);
             sec.appendChild(l);
@@ -104,11 +105,11 @@ function renderControls(sec) {
     qrc(qi('controls-2'));
     if (sec === undefined) return;
     var prev = qn('button'), next = qn('button'), fin = qn('button');
-    prev.insertAdjacentText('beforeEnd', 'Преыдущий');
+    qit(prev, 'beforeEnd', 'Преыдущий');
     prev.classList.add('control-prev');
-    next.insertAdjacentText('beforeEnd', 'Следующий');
+    qit(next, 'beforeEnd', 'Следующий');
     next.classList.add('control-next');
-    fin.insertAdjacentText('beforeEnd', 'Результат');
+    qit(fin, 'beforeEnd', 'Результат');
     fin.classList.add('control-fin');
     
     prev.addEventListener('click', function(e) {
