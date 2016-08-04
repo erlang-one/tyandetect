@@ -50,6 +50,7 @@ a#title {
 #result h2, #result h3 { font-size: 3.0rem; }
 
 #result h2 {
+    color: #fff;
     text-align: center;
     font-size: 4rem;
     position: relative;
@@ -59,11 +60,11 @@ a#title {
     content: '';
     position: absolute;
     background-color: rgba(255, 169, 220, 0.71);
-    width: 8rem;
-    height: 8rem;
-    right: calc( 50% - 4rem );
-    top: calc( 50% - 4rem );
-    border-radius: 10rem;
+    width: 2.4em;
+    height: 2.4em;
+    right: calc( 50% - 1.2em );
+    top: calc( 50% - 1.2em );
+    border-radius: 10em;
     z-index: -1;
 }
 
