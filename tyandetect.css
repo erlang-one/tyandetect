@@ -183,6 +183,8 @@ section.question input:checked + label { background-color: #bff1a1; }
     height: 4px;
     margin: 5em;
     background-image: -webkit-linear-gradient(left, #69cac6, #ff4016);
+    background-image: -moz-linear-gradient(left, #69cac6, #ff4016);
+    background-image: linear-gradient(left, #69cac6, #ff4016);
     border-radius: 10px;
     position: relative;
 }

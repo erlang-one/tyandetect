@@ -137,12 +137,16 @@ function renderControls(sec) {
         var result = summary();
         ga && ga('send', { hitType: 'event', eventCategory: 'detect', eventAction: result.toString() });
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', al[result], false);
-        setTimeout(function() {
-            xhr.send();
-            if (xhr.status != 200) { console.log('error loading resource ' + xhr.status + ': ' + xhr.statusText ); }
-            else { md(qi('result'), xhr.responseText); }
-        }, 10);
+        xhr.open('GET', al[result], true);
+        xhr.responseType = 'text';
+        xhr.onload = function (e) {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) { md(qi('result'), xhr.responseText); }
+                else console.error(xhr.statusText);
+        }};
+        xhr.onerror = function (e) { console.error(xhr.statusText); };
+        xhr.send(null);
+        
     }, false);
     
     if(qs('section.question') !== sec) { controls.appendChild(prev); };
@@ -175,11 +179,23 @@ function summary()
 
 };
 
+var style = (function() {
+    var style = document.createElement('style');
+    style.appendChild(document.createTextNode(''));
+    document.head.appendChild(style);
+    return style;
+})();
+
+function addCSSRule(selector, rules) {
+	if("addRule" in document.styleSheets[0]) { document.styleSheets[0].addRule(selector, rules); }
+    else { style.sheet.insertRule(selector + "{" + rules + "}", style.sheet.cssRules.length); } // FF
+};
+
 function progress(percent,text) {
     var dec = (100.0-percent) + '%';
-    document.styleSheets[0].addRule('.progress:after','margin-right: calc( ' + dec + ' - 0.8em )');
-    document.styleSheets[0].addRule('.progress:after','content: "' + text + '"');
-    document.styleSheets[0].addRule('.progress:before','width: ' + dec);
+    addCSSRule('.progress:after','margin-right: calc( ' + dec + ' - 0.8em )');
+    addCSSRule('.progress:after','content: "' + text + '"');
+    addCSSRule('.progress:before','width: ' + dec);
 };
 
 (function init() {
