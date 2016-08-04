@@ -78,11 +78,11 @@ function render() {
             attr(r, 'name', 'rg-' + (i + 1));
             attr(r, 'value', v[1]);
             r.dataset.group = q[i][0];
-            r.addEventListener('click', function() {
-                // setTimeout(function() {
-                    var x = qs('#controls .control-next'); x && x.click();
-                // }, 100);
-            });
+            // r.addEventListener('click', function() {
+            //     // setTimeout(function() {
+            //         var x = qs('#controls .control-next'); x && x.click();
+            //     // }, 100);
+            // });
             
             attr(l, 'for', id);
             l.insertAdjacentText('beforeEnd', v[0]);
