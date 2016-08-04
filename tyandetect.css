@@ -7,9 +7,6 @@
     max-width: 1080px;
     min-width: 20rem;
 }
-* {
-    transition: all 0.4s ease-out;
-}
 h1 {
     margin-bottom: 8rem;
     font-size: 4rem;
@@ -46,11 +43,14 @@ a#title {
 #footer {
     margin-top: 4rem;
     padding: 2rem;
-    font-size: 0.4rem;
+    font-size: 1.4rem;
 }
 
 .ya-share2 {
     margin: 1rem;
+}
+.ya-share2__item {
+    margin-top: 5px !important;
 }
 
 
@@ -164,4 +164,14 @@ progress:after {
     width: 100%;
     height: 100%;
     right: 0px;
+}
+
+@media only screen and (min-device-width : 300px) and (max-device-width : 700px) {
+    html {
+        font-size: 6px;
+    }
+    .control-next:before { transform: translateY(1.9rem) rotate(-45deg); }
+    .control-next:after { transform: translateY(-1.9rem) rotate(45deg); }
+    .control-prev:before { transform: translateY(1.9rem) rotate(45deg); }
+    .control-prev:after { transform: translateY(-1.9rem) rotate(-45deg); }
 }
