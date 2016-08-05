@@ -146,6 +146,7 @@ section.question label:hover, .control-fin:hover {
 section.question input:checked + label { background-color: #bff1a1; }
 
 .control-next, .control-prev {
+    outline: none;
     text-decoration: none;
     cursor: pointer;
     border: none;
