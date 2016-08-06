@@ -234,7 +234,7 @@ function share_init(s) {
 
 function share_content(girl) {
     var url = 'https://erlang-one.github.io/tyandetect/';
-    var desc: 'Определи психо-эмоциональный типаж девушки за 16 вопросов';
+    var desc = 'Определи психо-эмоциональный типаж девушки за 16 вопросов';
     var tt = {
         0:   'Тян-Детектор задетектировал 0-тян. Это Вин!'
         1:   'Тян-Детектор нашёл девчулю №1!',
