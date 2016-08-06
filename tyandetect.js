@@ -180,10 +180,10 @@ function summary()
     
     console.log('result: '+result+' (a='+a+', b='+b+', c='+c+')');
     
-    stat('by_type',result.toString());
+    stat('type',result.toString());
     for(var i = 0; i < s.length; i++) {
-        stat('by_question_all',s[i]);
-        stat('by_question_'+result,s[i]);
+        stat('question_by_type',s[i],'all');
+        stat('question_by_type',s[i],result.toString());
     }
     
     return result;
