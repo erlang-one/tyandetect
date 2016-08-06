@@ -40,6 +40,7 @@ var al = {
     110: '/tyandetect/110.md',
     111: '/tyandetect/111.md'
 };
+var hashes = { '#0': 0, '#1': 1, '#10': 10, '#11': 11, '#100': 100, '#101': 101, '#110': 110, '#111': 111 };
 
 function md(e,data) {
     var c = new showdown.Converter({
@@ -134,27 +135,14 @@ function renderControls(sec) {
         current.classList.remove('active');
         qr(qs('.progress'));
         renderControls(undefined);
-        qi('result').innerHTML = '<h2>Жди</h2>';
-        var result = summary();
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', al[result], true);
-        xhr.responseType = 'text';
-        xhr.onload = function (e) {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) { md(qi('result'), xhr.responseText); }
-                else console.error(xhr.statusText);
-        }};
-        xhr.onerror = function (e) { console.error(xhr.statusText); };
-        xhr.send(null);
-        
+        load_result(summary());
     }, false);
     
     if(qs('section.question') !== sec) { controls.appendChild(prev); };
     sec.dataset.finish === 'true' ? qi('controls-2').appendChild(fin) : controls.appendChild(next);
 };
 
-function summary()
-{
+function summary() {
     a = 0;
     b = 0;
     c = 0;
@@ -205,10 +193,29 @@ function progress(percent,text) {
     addCSSRule('.progress:before','width: ' + dec);
 };
 
-(function init() {
+function load_main() {
     var start = render().childNodes[0];
     start.classList.add('active');
     qs('.progress').style.visibility = 'visible';
     renderControls(start);
     progress(10,1);
+};
+
+function load_result(page) {
+    qi('result').innerHTML = '<h2>Жди</h2>';
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', al[page], true);
+    xhr.responseType = 'text';
+    xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) { md(qi('result'), xhr.responseText); }
+            else console.error(xhr.statusText);
+    }};
+    xhr.onerror = function (e) { console.error(xhr.statusText); };
+    xhr.send(null);
+};
+
+(function init() {
+    var page = hashes[window.location.hash];
+    page === undefined ? load_main() : load_result(page);
 })();
