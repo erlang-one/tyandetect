@@ -200,12 +200,11 @@ function load_main() {
     qs('.progress').style.visibility = 'visible';
     renderControls(start);
     progress(10,1);
-    share = share_init();
 };
 
 function load_result(page) {
     qr(qs('.progress'));
-    qs('.social-option').style.display = ""
+    qs('.social-option').style.display = "block";
     
     qi('result').innerHTML = '<h2>Жди</h2>';
     var xhr = new XMLHttpRequest();
@@ -218,7 +217,6 @@ function load_result(page) {
     }};
     xhr.onerror = function (e) { console.error(xhr.statusText); };
     xhr.send(null);
-    share = share_init();
     share.updateContent(share_content(page));
     qi('social-option').addEventListener('change', (function(e) {
         e.target.checked ? share.updateContent(share_content(page)) : share.updateContent(share_content(undefined));
@@ -236,13 +234,25 @@ function share_init(s) {
 
 function share_content(girl) {
     var url = 'https://erlang-one.github.io/tyandetect/';
-    if (girl) return { url: url + '#' + girl, title: 'Мой результат в Тян-Детекторе - ' + girl, description: 'Определитель типажа девушек',
+    var desc: 'Определи психо-эмоциональный типаж девушки за 16 вопросов';
+    var tt = {
+        0:   'Тян-Детектор задетектировал 0-тян. Это Вин!'
+        1:   'Тян-Детектор нашёл девчулю №1!',
+        10:  'Эта попка в топе-10 у Тян-Детектора',
+        11:  'Тян-Детектор и красотка номер 11',
+        100: 'На барабане Тян-Детектора сектор 100!',
+        101: 'Тян-Детектор и 101-я малышка передают вам троян',
+        110: 'Это находка для Тян-Детектора – типаж 110',
+        111: 'Тян-Детектор и 111 рады вам представить свои персоны'
+    }
+    if (girl) return { url: url + '#' + girl, title: tt[girl], description: desc,
         image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/master/overview.png' }
-    else return { url: url, title: 'Тян-Детектор', description: 'Определитель типажа девушек',
+    else return { url: url, title: 'Тян-Детектор', description: desc,
         image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/master/overview.png' }
 }
 
 (function init() {
     var page = hashes[window.location.hash];
+    share = share_init();
     page === undefined ? load_main() : load_result(page);
 })();
