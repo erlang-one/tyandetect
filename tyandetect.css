@@ -101,6 +101,14 @@ a#title {
     margin: 1rem;
     color: #999;
 }
+.social-option {
+    display: none;
+    font-size: 1rem;
+    color: #aaa;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
 .ya-share2__item {
     margin-top: 5px !important;
 }

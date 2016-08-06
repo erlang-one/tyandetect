@@ -200,11 +200,13 @@ function load_main() {
     qs('.progress').style.visibility = 'visible';
     renderControls(start);
     progress(10,1);
-    share_init(share);
+    share = share_init();
 };
 
 function load_result(page) {
     qr(qs('.progress'));
+    qs('.social-option').style.display = ""
+    
     qi('result').innerHTML = '<h2>Жди</h2>';
     var xhr = new XMLHttpRequest();
     xhr.open('GET', al[page], true);
@@ -216,7 +218,7 @@ function load_result(page) {
     }};
     xhr.onerror = function (e) { console.error(xhr.statusText); };
     xhr.send(null);
-    share_init(share);
+    share = share_init();
     share.updateContent(share_content(page));
     qi('social-option').addEventListener('change', (function(e) {
         e.target.checked ? share.updateContent(share_content(page)) : share.updateContent(share_content(undefined));
@@ -224,7 +226,7 @@ function load_result(page) {
 };
 
 function share_init(s) {
-    s = Ya.share2('my-share', {
+    return Ya.share2('my-share', {
         content: share_content(undefined),
         theme: { services: 'vkontakte,facebook,gplus,pinterest,twitter,digg,lj,tumblr,whatsapp,skype,telegram',
             counter: true },
