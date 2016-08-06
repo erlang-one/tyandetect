@@ -181,11 +181,7 @@ function summary()
     console.log('result: '+result+' (a='+a+', b='+b+', c='+c+')');
     
     stat('girl',result.toString(),'all');
-    for(var i = 0; i < s.length; i++) {
-        stat('answer',s[i],'all');
-        stat('answer',s[i],result.toString());
-        stat('girl',result.toString(),s[i]);
-    }
+    setTimeout(function() { stat('log',result.toString(),result.toString(),s.join(';')); }, 1200);
     
     return result;
 };
