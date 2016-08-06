@@ -42,6 +42,8 @@ var al = {
 };
 var hashes = { '#0': 0, '#1': 1, '#10': 10, '#11': 11, '#100': 100, '#101': 101, '#110': 110, '#111': 111 };
 
+var share; // yandex
+
 function md(e,data) {
     var c = new showdown.Converter({
         noHeaderId: true,
@@ -133,7 +135,6 @@ function renderControls(sec) {
     fin.addEventListener('click', function(e) {
         var current = qs('section.question.active');
         current.classList.remove('active');
-        qr(qs('.progress'));
         renderControls(undefined);
         load_result(summary());
     }, false);
@@ -199,9 +200,11 @@ function load_main() {
     qs('.progress').style.visibility = 'visible';
     renderControls(start);
     progress(10,1);
+    share_init(share);
 };
 
 function load_result(page) {
+    qr(qs('.progress'));
     qi('result').innerHTML = '<h2>Жди</h2>';
     var xhr = new XMLHttpRequest();
     xhr.open('GET', al[page], true);
@@ -213,7 +216,29 @@ function load_result(page) {
     }};
     xhr.onerror = function (e) { console.error(xhr.statusText); };
     xhr.send(null);
+    share_init(share);
+    share.updateContent(share_content(page));
+    qi('social-option').addEventListener('change', (function(e) {
+        e.target.checked ? share.updateContent(share_content(page)) : share.updateContent(share_content(undefined));
+    }).bind(this), false);
 };
+
+function share_init(s) {
+    s = Ya.share2('my-share', {
+        content: share_content(undefined),
+        theme: { services: 'vkontakte,facebook,gplus,pinterest,twitter,digg,lj,tumblr,whatsapp,skype,telegram',
+            counter: true },
+        hooks: { onshare: function (name) { stat('share',name,window.location.hash); }}
+    });
+};
+
+function share_content(girl) {
+    var url = 'https://erlang-one.github.io/tyandetect/';
+    if (girl) return { url: url + '#' + girl, title: 'Мой результат в Тян-Детекторе - ' + girl, description: 'Определитель типажа девушек',
+        image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/master/overview.png' }
+    else return { url: url, title: 'Тян-Детектор', description: 'Определитель типажа девушек',
+        image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/master/overview.png' }
+}
 
 (function init() {
     var page = hashes[window.location.hash];
