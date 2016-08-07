@@ -114,7 +114,11 @@ a#title {
 }
 
 #image-stack {
+    display: none;
     padding-top: 0.4rem;
+}
+.social-option > input:checked ~ #image-stack {
+    display: block;
 }
 #image-stack > div {
     display: inline-block;
@@ -165,7 +169,7 @@ section.question label, .control-fin {
     font-size: 1.8rem;
     font-weight: 100;
     border: none;
-    margin: 2rem;
+    margin: 2rem auto;
     background-color: #ff866b;
 }
 section.question label:hover, .control-fin:hover {

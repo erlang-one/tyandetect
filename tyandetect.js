@@ -117,12 +117,12 @@ function renderControls() {
         var prv = cur.previousSibling;
         
         if(prv) {
-            cur.classList.remove('active');
-            prv.classList.add('active');
-            
             show(qs('#controls .control-next'));
             if(qs('section.question') === prv) { hide(qs('#controls .control-prev')); };
             hide(qs('#controls-2 .control-fin'));
+            
+            cur.classList.remove('active');
+            prv.classList.add('active');
             
             progress(80.0/(q.length-1)*parseInt(prv.dataset.element)+10,prv.dataset.name);
         }
@@ -133,11 +133,11 @@ function renderControls() {
         var nxt = cur.nextSibling;
         
         if(nxt) {
-            cur.classList.remove('active');
-            nxt.classList.add('active');
-            
             show(qs('#controls .control-prev'));
             if(!!nxt.dataset.finish) { hide(qs('#controls .control-next')); show(qs('#controls-2 .control-fin')) };
+            
+            cur.classList.remove('active');
+            nxt.classList.add('active');
             
             progress(80.0/(q.length-1)*parseInt(nxt.dataset.element)+10,nxt.dataset.name);
         }
@@ -145,9 +145,9 @@ function renderControls() {
     
     fin.addEventListener('click', function(e) {
         var cur = qs('section.question.active');
-        cur.classList.remove('active');
         hide(qi('controls'));
         hide(qi('controls-2'));
+        cur.classList.remove('active');
         load_result(summary());
     }, false);
     
@@ -253,6 +253,7 @@ function share_images(girl) {
             im = qn('img'),
             im_name = 'images/' + girl + '-' + names[i] + '.jpg';
         
+        if ( i === 0 ) { r.checked = true; }
         r.dataset.image = im_name;
         attr(r, 'id', rid),
         attr(r, 'type', 'radio');
