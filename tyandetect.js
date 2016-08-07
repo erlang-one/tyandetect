@@ -295,7 +295,7 @@ function share_content(girl) {
     if (girl === undefined) return { url: url, title: 'Тян-Детектор', description: desc,
         image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/gh-pages/images/overview.png' }
     else return { url: url + '#' + girl, title: tt[girl], description: desc,
-        image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/gh-pages/images' + qs('#image-stack input:checked').dataset.image }
+        image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/gh-pages/' + qs('#image-stack input:checked').dataset.image }
 }
 
 (function init() {
