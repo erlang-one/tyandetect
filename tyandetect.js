@@ -224,7 +224,7 @@ function keyHandler(e) {
     else if(e.which == 37 && !e.metaKey && !e.ctrlKey) { qs('#controls .control-prev').click(); }
     else if(e.which >= 49 && e.which <= 51 && !e.metaKey && !e.ctrlKey) {
         var r = qs('section.question.active input:nth-of-type('+ (e.which - 48) +')');
-        r && r.checked = true;
+        if(r) { r.checked = true; }
     }
 };
 
