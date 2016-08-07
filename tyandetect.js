@@ -260,7 +260,9 @@ function share_images(girl) {
         attr(r, 'name', 'rg-share-image');
         attr(l,'for', rid);
         attr(im, 'src', im_name);
-        im.addEventListener('click', function(e) { share.updateContent(share_content(girl)); }, false);
+        r.addEventListener('change', function(e) {
+            if(e.target.checked) { share.updateContent(share_content(girl)); }
+        }, false);
         l.appendChild(im);
         sec.appendChild(r);
         sec.appendChild(l);
