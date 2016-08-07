@@ -140,7 +140,7 @@ function renderControls(sec) {
     }, false);
     
     if(qs('section.question') !== sec) { controls.appendChild(prev); };
-    sec.dataset.finish === 'true' ? qi('controls-2').appendChild(fin) : controls.appendChild(next);
+    !!sec.dataset.finish ? qi('controls-2').appendChild(fin) : controls.appendChild(next);
 };
 
 function summary() {
