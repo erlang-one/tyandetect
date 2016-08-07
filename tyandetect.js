@@ -7,7 +7,9 @@ function qn(name) { return document.createElement(name); };
 function attr(node,a,v) { return node.setAttribute(a,v); };
 function qr(node) { node.parentNode.removeChild(node); };
 function qrc(node) { while (node.firstChild) { node.removeChild(node.firstChild); }};
-function qit(node,where,who) { node.insertAdjacentHTML(where,who); }
+function qit(node,where,who) { node.insertAdjacentHTML(where,who); };
+function hide(node) { node.style.display = 'none'; };
+function show(node) { node.style.display = 'block'; };
 
 function stat(c,a,l) { GA_STAT && ga && ga('send', { hitType: 'event', eventCategory: c, eventAction: a, eventLabel: l || 'no label' }); };
 
@@ -103,44 +105,58 @@ function render() {
     return page;
 };
 
-function renderControls(sec) {
-    var controls = qi('controls');
-    qrc(controls);
-    qrc(qi('controls-2'));
-    if (sec === undefined) return;
+function renderControls() {
     var prev = qn('button'), next = qn('button'), fin = qn('button');
-    qit(prev, 'beforeEnd', 'Преыдущий');
     prev.classList.add('control-prev');
-    qit(next, 'beforeEnd', 'Следующий');
     next.classList.add('control-next');
     qit(fin, 'beforeEnd', 'Результат');
     fin.classList.add('control-fin');
     
-    prev.addEventListener('click', function(e) {
-        var current = qs('section.question.active');
-        current.classList.remove('active');
-        current.previousSibling.classList.add('active');
-        progress(80.0/(q.length-1)*parseInt(current.previousSibling.dataset.element)+10,current.previousSibling.dataset.name);
-        renderControls(current.previousSibling);
+    prev.addEventListener('click', function(e) {        
+        var cur = qs('section.question.active');
+        var prv = cur.previousSibling;
+        
+        if(prv) {
+            cur.classList.remove('active');
+            prv.classList.add('active');
+            
+            show(qs('#controls .control-next'));
+            if(qs('section.question') === prv) { hide(qs('#controls .control-prev')); };
+            hide(qs('#controls-2 .control-fin'));
+            
+            progress(80.0/(q.length-1)*parseInt(prv.dataset.element)+10,prv.dataset.name);
+        }
     }, false);
     
     next.addEventListener('click', function(e) {
-        var current = qs('section.question.active');
-        current.classList.remove('active');
-        current.nextSibling && current.nextSibling.classList.add('active');
-        current.nextSibling && progress(80.0/(q.length-1)*parseInt(current.nextSibling.dataset.element)+10,current.nextSibling.dataset.name);
-        renderControls(current.nextSibling);
+        var cur = qs('section.question.active');
+        var nxt = cur.nextSibling;
+        
+        if(nxt) {
+            cur.classList.remove('active');
+            nxt.classList.add('active');
+            
+            show(qs('#controls .control-prev'));
+            if(!!nxt.dataset.finish) { hide(qs('#controls .control-next')); show(qs('#controls-2 .control-fin')) };
+            
+            progress(80.0/(q.length-1)*parseInt(nxt.dataset.element)+10,nxt.dataset.name);
+        }
     }, false);
     
     fin.addEventListener('click', function(e) {
-        var current = qs('section.question.active');
-        current.classList.remove('active');
-        renderControls(undefined);
+        var cur = qs('section.question.active');
+        cur.classList.remove('active');
+        hide(qi('controls'));
+        hide(qi('controls-2'));
         load_result(summary());
     }, false);
     
-    if(qs('section.question') !== sec) { controls.appendChild(prev); };
-    !!sec.dataset.finish ? qi('controls-2').appendChild(fin) : controls.appendChild(next);
+    hide(prev);
+    hide(fin);
+    var controls = qi('controls');
+    controls.appendChild(prev);
+    controls.appendChild(next);
+    qi('controls-2').appendChild(fin);
 };
 
 function summary() {
@@ -198,7 +214,7 @@ function load_main() {
     var start = render().childNodes[0];
     start.classList.add('active');
     qs('.progress').style.visibility = 'visible';
-    renderControls(start);
+    renderControls();
     progress(10,1);
 };
 
@@ -217,6 +233,8 @@ function load_result(page) {
     }};
     xhr.onerror = function (e) { console.error(xhr.statusText); };
     xhr.send(null);
+    
+    share_images(page);
     share.updateContent(share_content(page));
     qi('social-option').addEventListener('change', (function(e) {
         e.target.checked ? share.updateContent(share_content(page)) : share.updateContent(share_content(undefined));
@@ -249,7 +267,7 @@ function share_images(girl) {
     };
 };
 
-function share_init(s) {
+function share_init() {
     return Ya.share2('my-share', {
         content: share_content(undefined),
         theme: { services: 'vkontakte,facebook,gplus,pinterest,twitter,digg,lj,tumblr,whatsapp,skype,telegram',
