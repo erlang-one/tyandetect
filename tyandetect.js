@@ -216,6 +216,16 @@ function load_main() {
     qs('.progress').style.visibility = 'visible';
     renderControls();
     progress(10,1);
+    document.addEventListener("keydown", keyHandler, false);
+};
+
+function keyHandler(e) {
+    if(e.which == 39 && !e.metaKey && !e.ctrlKey) { qs('#controls .control-next').click(); }
+    else if(e.which == 37 && !e.metaKey && !e.ctrlKey) { qs('#controls .control-prev').click(); }
+    else if(e.which >= 49 && e.which <= 51 && !e.metaKey && !e.ctrlKey) {
+        var r = qs('section.question.active input:nth-of-type('+ (e.which - 48) +')');
+        r && r.checked = true;
+    }
 };
 
 function load_result(page) {
