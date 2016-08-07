@@ -223,6 +223,32 @@ function load_result(page) {
     }).bind(this), false);
 };
 
+function share_images(girl) {
+    var is = qi('image-stack');
+    var names = ['m','s','h','n'];
+    for(var i = 0; i < names.length; i++) {
+        
+        var rid = 'r-share-image-' + (i + 1),
+            sec = qn('div'),
+            r = qn('input'),
+            l = qn('label'),
+            im = qn('img'),
+            im_name = 'images/' + girl + '-' + names[i] + '.jpg';
+        
+        r.dataset.image = im_name;
+        attr(r, 'id', rid),
+        attr(r, 'type', 'radio');
+        attr(r, 'name', 'rg-share-image');
+        attr(l,'for', rid);
+        attr(im, 'src', im_name);
+        im.addEventListener('click', function(e) { share.updateContent(share_content(girl)); }, false);
+        l.appendChild(im);
+        sec.appendChild(r);
+        sec.appendChild(l);
+        is.appendChild(sec);
+    };
+};
+
 function share_init(s) {
     return Ya.share2('my-share', {
         content: share_content(undefined),
@@ -231,6 +257,8 @@ function share_init(s) {
         hooks: { onshare: function (name) { stat('share',name,window.location.hash); }}
     });
 };
+
+
 
 function share_content(girl) {
     var url = 'https://erlang-one.github.io/tyandetect/';
@@ -244,11 +272,11 @@ function share_content(girl) {
         101: 'Тян-Детектор и 101-я малышка передают вам троян',
         110: 'Это находка для Тян-Детектора – типаж 110',
         111: 'Тян-Детектор и 111 рады вам представить свои персоны'
-    }
-    if (girl) return { url: url + '#' + girl, title: tt[girl], description: desc,
-        image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/master/overview.png' }
-    else return { url: url, title: 'Тян-Детектор', description: desc,
-        image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/master/overview.png' }
+    };
+    if (girl === undefined) return { url: url, title: 'Тян-Детектор', description: desc,
+        image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/gh-pages/images/overview.png' }
+    else return { url: url + '#' + girl, title: tt[girl], description: desc,
+        image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/gh-pages/images' + qs('#image-stack input:checked').dataset.image }
 }
 
 (function init() {

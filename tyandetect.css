@@ -113,6 +113,26 @@ a#title {
     margin-top: 5px !important;
 }
 
+#image-stack {
+    padding-top: 0.4rem;
+}
+#image-stack > div {
+    display: inline-block;
+}
+#image-stack label img {
+    width: 7rem;
+    border: 0.4rem solid transparent;
+    border-radius: 4px;
+    margin: 0.1rem;
+    cursor: pointer;
+}
+#image-stack input {
+    display: none;
+}
+#image-stack input[type='radio']:checked + label img {
+    border-color: #c0e8f6;
+}
+
 
 section.question:not(.active) {
     display: none;
