@@ -4,9 +4,6 @@
         <link href='/tyandetect/tyandetect.css' type='text/css' rel='stylesheet'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>Тян-Детектор</title>
-        <style>
-            iframe { width: 100%; min-height: 600px; border: none; }
-        </style>
     </head>
     <body>
         <div id='container'>
@@ -48,20 +45,29 @@
                 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </div> -->
             <div id='comments'>
-                <iframe src='https://erlach.co/services/mv/2z' frameborder="0" scrolling="no" onload="initIframe(this);" ></iframe>
+                <div id='erlach-acf'>
+                    <iframe src='https://erlach.co/services/b/m0' frameborder="0" scrolling="no"></iframe>
+                </div>
                 <script>
                     (function() { var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                         window.webkitRequestAnimationFrame || window.msRequestAnimationFrame; })();
-
-                    function iframeDoc(iframe) { return iframe.contentDocument || iframe.contentWindow.document; };
-
-                    function initIframe(iframe) {
-                        iframeDoc(iframe).body.classList.add('services');
-                        iframe.monitor = setInterval(function() {
-                            var h = iframeDoc(iframe).getElementById('main').clientHeight;
-                            if(iframe.h !== h)  { iframe.h = h; iframe.style.height = h + 'px'; iframe.style.display = 'block'; }
-                        }, 30);
-                    };
+                    window.addEventListener('message', function(e){
+                        var d = e.data;
+                        var ok = d instanceof Object && d.service === 'erlach' && d.api === 3;
+                        switch(d.action) {
+                            case 'resize':
+                                var eacf = document.getElementById('erlach-acf');
+                                if(eacf) {
+                                    requestAnimationFrame((function() {
+                                        eacf.style.height = parseInt(d.height) + 'px';
+                                        eacf.style.display = 'block';
+                                        console.log('resized');
+                                    }).bind(this));
+                                }
+                                break;
+                            default: console.log(d);
+                        }
+                    },false);
                 </script>
             </div>
             <div id='footer'>
