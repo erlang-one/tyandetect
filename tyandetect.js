@@ -33,6 +33,7 @@ var q = [
     [16,3,'Стремиться делить счета в кафе и других заведениях поровну?',[['Да',0.3],['Нет',-0.15]]]
 ];
 
+var share_link = 'http://detector.erlach.co/'
 var share; // yandex
 var domain = 'http://erlang-one.github.io/tyandetect/';
 var al = {
@@ -304,9 +305,9 @@ function share_content(girl) {
         110: 'Это находка для Тян-Детектора – типаж 110',
         111: 'Тян-Детектор и 111 рады вам представить свои персоны'
     };
-    if (girl === undefined) return { url: domain, title: 'Тян-Детектор', description: desc,
+    if (girl === undefined) return { url: share_link, title: 'Тян-Детектор', description: desc,
         image: domain + 'images/overview.png' }
-    else return { url: domain + '#' + girl, title: tt[girl], description: desc,
+    else return { url: share_link + '#' + girl, title: tt[girl], description: desc,
         image: domain + 'images/' + qs('#image-stack input:checked').dataset.image }
 }
 
