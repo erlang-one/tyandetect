@@ -12,6 +12,7 @@ function hide(node) { node.style.display = 'none'; };
 function show(node) { node.style.display = 'block'; };
 
 function stat(c,a,l) { GA_STAT && ga && ga('send', { hitType: 'event', eventCategory: c, eventAction: a, eventLabel: l || 'no label' }); };
+function xhrsafe(uri) { return window.location.href + uri; };
 
 var q = [
     [1,2,'У нее есть тату или пирсинг?',[['Да',-0.2],['Нет',0.1]]],
@@ -32,20 +33,19 @@ var q = [
     [16,3,'Стремиться делить счета в кафе и других заведениях поровну?',[['Да',0.3],['Нет',-0.15]]]
 ];
 
+var share; // yandex
 var domain = 'http://erlang-one.github.io/tyandetect/';
 var al = {
-    0:   domain + '000.md',
-    1:   domain + '001.md',
-    10:  domain + '010.md',
-    11:  domain + '011.md',
-    100: domain + '100.md',
-    101: domain + '101.md', 
-    110: domain + '110.md',
-    111: domain + '111.md'
+    0:   '000.md',
+    1:   '001.md',
+    10:  '010.md',
+    11:  '011.md',
+    100: '100.md',
+    101: '101.md', 
+    110: '110.md',
+    111: '111.md'
 };
 var hashes = { '#0': 0, '#1': 1, '#10': 10, '#11': 11, '#100': 100, '#101': 101, '#110': 110, '#111': 111 };
-
-var share; // yandex
 
 function md(e,data) {
     var c = new showdown.Converter({
@@ -235,7 +235,7 @@ function load_result(page) {
     
     qi('result').innerHTML = '<h2>Жди</h2>';
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', al[page], true);
+    xhr.open('GET', xhrsafe(al[page]), true);
     xhr.responseType = 'text';
     xhr.onload = function (e) {
         if (xhr.readyState === 4) {
