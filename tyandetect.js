@@ -235,6 +235,7 @@ function load_result(page) {
     qs('.social-option').style.display = "block";
     
     qi('result').innerHTML = '<h2>Жди</h2>';
+    qi('share_desc').innerHTML = 'Поделись или <a class="renew" href="http://detector.erlach.co/">пройди тест</a>';
     var xhr = new XMLHttpRequest();
     xhr.open('GET', xhrsafe(al[page]), true);
     xhr.responseType = 'text';

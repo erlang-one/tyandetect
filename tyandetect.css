@@ -98,7 +98,7 @@ a#title {
 #footer > div {
     margin: 1rem;
 }
-#footer a {
+#footer a, a.renew {
     color: #ff866b;
     text-decoration: none;
 }
