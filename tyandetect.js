@@ -32,15 +32,16 @@ var q = [
     [16,3,'Стремиться делить счета в кафе и других заведениях поровну?',[['Да',0.3],['Нет',-0.15]]]
 ];
 
+var domain = 'http://erlang-one.github.io/tyandetect/';
 var al = {
-    0:   '/tyandetect/000.md',
-    1:   '/tyandetect/001.md',
-    10:  '/tyandetect/010.md',
-    11:  '/tyandetect/011.md',
-    100: '/tyandetect/100.md',
-    101: '/tyandetect/101.md', 
-    110: '/tyandetect/110.md',
-    111: '/tyandetect/111.md'
+    0:   domain + '000.md',
+    1:   domain + '001.md',
+    10:  domain + '010.md',
+    11:  domain + '011.md',
+    100: domain + '100.md',
+    101: domain + '101.md', 
+    110: domain + '110.md',
+    111: domain + '111.md'
 };
 var hashes = { '#0': 0, '#1': 1, '#10': 10, '#11': 11, '#100': 100, '#101': 101, '#110': 110, '#111': 111 };
 
@@ -261,7 +262,7 @@ function share_images(girl) {
             r = qn('input'),
             l = qn('label'),
             im = qn('img'),
-            im_name = 'images/' + girl + '-' + names[i] + '.jpg';
+            im_name = girl + '-' + names[i] + '.jpg';
         
         if ( i === 0 ) { r.checked = true; }
         r.dataset.image = im_name;
@@ -269,7 +270,7 @@ function share_images(girl) {
         attr(r, 'type', 'radio');
         attr(r, 'name', 'rg-share-image');
         attr(l,'for', rid);
-        attr(im, 'src', im_name);
+        attr(im, 'src', domain + 'images/' + im_name);
         r.addEventListener('change', function(e) {
             if(e.target.checked) { share.updateContent(share_content(girl)); }
         }, false);
@@ -292,7 +293,6 @@ function share_init() {
 
 
 function share_content(girl) {
-    var url = 'https://erlang-one.github.io/tyandetect/';
     var desc = 'Определи психо-эмоциональный типаж девушки за 16 вопросов';
     var tt = {
         0:   'Тян-Детектор задетектировал 0-тян. Это Вин!',
@@ -304,10 +304,10 @@ function share_content(girl) {
         110: 'Это находка для Тян-Детектора – типаж 110',
         111: 'Тян-Детектор и 111 рады вам представить свои персоны'
     };
-    if (girl === undefined) return { url: url, title: 'Тян-Детектор', description: desc,
-        image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/gh-pages/images/overview.png' }
-    else return { url: url + '#' + girl, title: tt[girl], description: desc,
-        image: 'https://raw.githubusercontent.com/erlang-one/tyandetect/gh-pages/' + qs('#image-stack input:checked').dataset.image }
+    if (girl === undefined) return { url: domain, title: 'Тян-Детектор', description: desc,
+        image: domain + 'images/overview.png' }
+    else return { url: domain + '#' + girl, title: tt[girl], description: desc,
+        image: domain + 'images/' + qs('#image-stack input:checked').dataset.image }
 }
 
 (function init() {
