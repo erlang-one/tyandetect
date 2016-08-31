@@ -266,6 +266,6 @@ section.question input:checked + label { background-color: #bff1a1; }
         line-height: 3.2rem;
     }
     .progress::after {
-        top: -0.5em;
+        top: -0.6em;
     }
 }
