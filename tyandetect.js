@@ -299,9 +299,9 @@ function share_content(girl) {
         111: 'Тян-Детектор и 111 рады вам представить свои персоны'
     };
     if (girl === undefined) return { url: share_link, title: 'Тян-Детектор', description: desc,
-        image: '/images/overview.png' }
+        image: 'http://detector.erlach.co/images/overview.png' }
     else return { url: share_link + '#' + girl, title: tt[girl], description: desc,
-        image: '/images/' + qs('#image-stack input:checked').dataset.image }
+        image: 'http://detector.erlach.co/images/' + qs('#image-stack input:checked').dataset.image }
 }
 
 (function init() {
