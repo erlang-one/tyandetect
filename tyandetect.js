@@ -35,7 +35,6 @@ var q = [
 
 var share_link = 'http://detector.erlach.co/'
 var share; // yandex
-var domain = 'http://erlang-one.github.io/tyandetect/';
 var al = {
     0:   '000.md',
     1:   '001.md',
@@ -95,6 +94,7 @@ function render() {
             
             attr(l, 'for', id);
             qit(l, 'beforeEnd', v[0]);
+            l.addEventListener('click', function(e) { qs('#controls .control-next').click(); }, false);
             
             sec.appendChild(r);
             sec.appendChild(l);
@@ -108,11 +108,9 @@ function render() {
 };
 
 function renderControls() {
-    var prev = qn('button'), next = qn('button'), fin = qn('button');
+    var prev = qn('button'), next = qn('button');
     prev.classList.add('control-prev');
     next.classList.add('control-next');
-    qit(fin, 'beforeEnd', 'Результат');
-    fin.classList.add('control-fin');
     
     prev.addEventListener('click', function(e) {        
         var cur = qs('section.question.active');
@@ -121,7 +119,6 @@ function renderControls() {
         if(prv) {
             show(qs('#controls .control-next'));
             if(qs('section.question') === prv) { hide(qs('#controls .control-prev')); };
-            hide(qs('#controls-2 .control-fin'));
             
             cur.classList.remove('active');
             prv.classList.add('active');
@@ -132,33 +129,28 @@ function renderControls() {
     
     next.addEventListener('click', function(e) {
         var cur = qs('section.question.active');
-        var nxt = cur.nextSibling;
         
-        if(nxt) {
-            show(qs('#controls .control-prev'));
-            if(!!nxt.dataset.finish) { hide(qs('#controls .control-next')); show(qs('#controls-2 .control-fin')) };
+        if(!!cur.dataset.finish) {
+                hide(qi('controls'));
+                cur.classList.remove('active');
+                load_result(summary());
+        } else {
+            var nxt = cur.nextSibling;
+            if(nxt) {
+                show(qs('#controls .control-prev'));
             
-            cur.classList.remove('active');
-            nxt.classList.add('active');
+                cur.classList.remove('active');
+                nxt.classList.add('active');
             
-            progress(80.0/(q.length-1)*parseInt(nxt.dataset.element)+10,nxt.dataset.name);
+                progress(80.0/(q.length-1)*parseInt(nxt.dataset.element)+10,nxt.dataset.name);
+            }
         }
     }, false);
     
-    fin.addEventListener('click', function(e) {
-        var cur = qs('section.question.active');
-        hide(qi('controls'));
-        hide(qi('controls-2'));
-        cur.classList.remove('active');
-        load_result(summary());
-    }, false);
-    
     hide(prev);
-    hide(fin);
     var controls = qi('controls');
     controls.appendChild(prev);
     controls.appendChild(next);
-    qi('controls-2').appendChild(fin);
 };
 
 function summary() {
@@ -272,7 +264,7 @@ function share_images(girl) {
         attr(r, 'type', 'radio');
         attr(r, 'name', 'rg-share-image');
         attr(l,'for', rid);
-        attr(im, 'src', domain + 'images/' + im_name);
+        attr(im, 'src',  '/images/' + im_name);
         r.addEventListener('change', function(e) {
             if(e.target.checked) { share.updateContent(share_content(girl)); }
         }, false);
@@ -307,9 +299,9 @@ function share_content(girl) {
         111: 'Тян-Детектор и 111 рады вам представить свои персоны'
     };
     if (girl === undefined) return { url: share_link, title: 'Тян-Детектор', description: desc,
-        image: domain + 'images/overview.png' }
+        image: '/images/overview.png' }
     else return { url: share_link + '#' + girl, title: tt[girl], description: desc,
-        image: domain + 'images/' + qs('#image-stack input:checked').dataset.image }
+        image: '/images/' + qs('#image-stack input:checked').dataset.image }
 }
 
 (function init() {

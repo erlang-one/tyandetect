@@ -150,7 +150,7 @@ a#title {
 section.question:not(.active) {
     display: none;
 }
-section.question, h1, #controls, #controls-2, #footer {
+section.question, h1, #controls, #footer {
     text-align: center;
 }
 section.question > div {
