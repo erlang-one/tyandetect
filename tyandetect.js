@@ -12,7 +12,7 @@ function hide(node) { node.style.display = 'none'; };
 function show(node) { node.style.display = 'block'; };
 
 function stat(c,a,l) { GA_STAT && ga && ga('send', { hitType: 'event', eventCategory: c, eventAction: a, eventLabel: l || 'no label' }); };
-function xhrsafe(uri) { return window.location.href + uri; };
+function xhrsafe(uri) { return window.location.protocol + '//' + window.location.host + window.location.pathname + uri; };
 
 var q = [
     [1,2,'У нее есть тату или пирсинг?',[['Да',-0.2],['Нет',0.1]]],
