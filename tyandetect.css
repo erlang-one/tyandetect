@@ -265,4 +265,7 @@ section.question input:checked + label { background-color: #bff1a1; }
         font-size: 2rem;
         line-height: 3.2rem;
     }
+    .progress::after {
+        top: -0.8em;
+    }
 }
