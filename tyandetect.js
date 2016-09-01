@@ -312,3 +312,13 @@ function share_content(girl) {
     share = share_init();
     page === undefined ? load_main() : load_result(page);
 })();
+
+var marker = qi('social');
+window.onscroll = function() {
+    console.log(marker.getBoundingClientRect().top + ' < ' + window.document.body.clientHeight);
+    if(marker && (marker.getBoundingClientRect().top < window.document.body.clientHeight)) {
+        qi('renew').classList.add('hidden');
+    } else {
+        qi('renew').classList.remove('hidden');
+    }
+};
