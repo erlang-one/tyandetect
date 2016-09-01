@@ -98,7 +98,7 @@ a#title {
 #footer > div {
     margin: 1rem;
 }
-#footer a, a.renew {
+a {
     color: #ff866b;
     text-decoration: none;
 }
@@ -254,6 +254,25 @@ section.question input:checked + label { background-color: #bff1a1; }
     height: 100%;
     right: 0px;
 }
+#renew {
+    z-index: 10;
+    position: absolute;
+    right: calc(50% - 5rem);
+    bottom: 1.4rem;
+    width: 10rem;
+    height: 10rem;
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 30rem;
+    display: flex;
+    border: 5px solid #fac;
+    
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1.4s;
+}
+#renew.hidden { display: none; }
+#renew a { margin:auto; text-align: center; padding: 1rem; }
 
 @media only screen and (min-device-width : 300px) and (max-device-width : 700px) {
     html {
@@ -268,4 +287,17 @@ section.question input:checked + label { background-color: #bff1a1; }
     .progress::after {
         top: -0.7em;
     }
+}
+
+@keyframes flipInY {
+  from { transform: perspective(400px) rotate3d(0, 1, 0, 90deg); animation-timing-function: ease-in; opacity: 0; }
+  40% { transform: perspective(400px) rotate3d(0, 1, 0, -20deg); animation-timing-function: ease-in; }
+  60% { transform: perspective(400px) rotate3d(0, 1, 0, 10deg); opacity: 1; }
+  80% { transform: perspective(400px) rotate3d(0, 1, 0, -5deg); }
+  to { transform: perspective(400px); }
+}
+
+.flipInY {
+  backface-visibility: visible !important;
+  animation-name: flipInY;
 }

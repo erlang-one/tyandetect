@@ -30,7 +30,7 @@ var q = [
     [13,2,'Свободно говорит о сексе?',[['Да',-0.2],['Нет',0.2]]],  
     [14,3,'Карьеристка?',[['Да',0.15],['Нет',-0.1]]],
     [15,3,'Считает права парня и девушки равными?',[['Да',0.1],['Нет',-0.15]]],
-    [16,3,'Стремиться делить счета в кафе и других заведениях поровну?',[['Да',0.3],['Нет',-0.15]]]
+    [16,3,'Стремится делить счета в кафе и других заведениях поровну?',[['Да',0.3],['Нет',-0.15]]]
 ];
 
 var share_link = 'http://detector.erlach.co/'
@@ -228,6 +228,9 @@ function load_result(page) {
     
     qi('result').innerHTML = '<h2>Жди</h2>';
     qi('share_desc').innerHTML = 'Поделись или <a class="renew" href="http://detector.erlach.co/">пройди тест</a>';
+    qi('renew').classList.remove('hidden');
+    qi('renew').classList.add('flipInY');
+    
     var xhr = new XMLHttpRequest();
     xhr.open('GET', xhrsafe(al[page]), true);
     xhr.responseType = 'text';
