@@ -317,6 +317,6 @@ function share_content(girl) {
 
 var marker = qi('social');
 window.onscroll = function() {
-    (window.location.hash && marker && (marker.getBoundingClientRect().top < window.document.body.clientHeight))
+    (!window.location.hash && marker && (marker.getBoundingClientRect().top < window.document.body.clientHeight))
         ? qi('renew').classList.add('hidden') : qi('renew').classList.remove('hidden');
 };
