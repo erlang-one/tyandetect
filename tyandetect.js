@@ -236,8 +236,10 @@ function load_result(page) {
     xhr.responseType = 'text';
     xhr.onload = function (e) {
         if (xhr.readyState === 4) {
-            if (xhr.status === 200) { md(qi('result'), xhr.responseText); }
-            else console.error(xhr.statusText);
+            if (xhr.status === 200) {
+                md(qi('result'), xhr.responseText);
+                window.location.hash = '#' + page;
+            } else console.error(xhr.statusText);
     }};
     xhr.onerror = function (e) { console.error(xhr.statusText); };
     xhr.send(null);
@@ -315,6 +317,6 @@ function share_content(girl) {
 
 var marker = qi('social');
 window.onscroll = function() {
-    (marker && (marker.getBoundingClientRect().top < window.document.body.clientHeight))
+    (window.location.hash && marker && (marker.getBoundingClientRect().top < window.document.body.clientHeight))
         ? qi('renew').classList.add('hidden') : qi('renew').classList.remove('hidden');
 };
