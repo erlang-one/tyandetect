@@ -95,7 +95,7 @@ a#title {
 #footer > div {
     margin: 1rem;
 }
-a {
+a, .link {
     color: #ff866b;
     text-decoration: none;
 }
