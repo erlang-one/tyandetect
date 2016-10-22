@@ -3,6 +3,7 @@
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
         <link href='/tyandetect.css' type='text/css' rel='stylesheet'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <script src='https://erlach.co/static/services.min.js'></script>
         <title>Тян-Детектор</title>
     </head>
     <body>
@@ -28,27 +29,6 @@
                 <div id='erlach-acf'>
                     <iframe src='https://erlach.co/services/github.io/nz' frameborder="0" scrolling="no"></iframe>
                 </div>
-                <script>
-                    (function() { var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-                        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame; })();
-                    window.addEventListener('message', function(e){
-                        var d = e.data;
-                        var ok = d instanceof Object && d.service === 'erlach' && d.api === 3;
-                        switch(d.action) {
-                            case 'resize':
-                                var eacf = document.getElementById('erlach-acf');
-                                if(eacf) {
-                                    requestAnimationFrame((function() {
-                                        eacf.style.height = parseInt(d.height) + 'px';
-                                        eacf.style.display = 'block';
-                                        console.log('resized');
-                                    }).bind(this));
-                                }
-                                break;
-                            default: console.log(d);
-                        }
-                    },false);
-                </script>
             </div>
             <div id='footer'>
                 <div>Just for lulz</div>
